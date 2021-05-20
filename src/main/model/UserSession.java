@@ -13,11 +13,11 @@ public class UserSession
     Connection connection;
     public ResultSet session;
 
-    private static int id, age;
-    private static String name, surname, username, password, role, secretQuestion, secretAnswer;
+    private static int id;
+    private static String age, name, surname, username, password, role, secretQuestion, secretAnswer;
     private static boolean isAdmin;
 
-    public UserSession(int id, int age, String name, String surname, String username, String password, String role, String secretQuestion, String secretAnswer, boolean isAdmin) {
+    public UserSession(int id, String age, String name, String surname, String username, String password, String role, String secretQuestion, String secretAnswer, boolean isAdmin) {
         this.id = id;
         this.age = age;
         this.name = name;

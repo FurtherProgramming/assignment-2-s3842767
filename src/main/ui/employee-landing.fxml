@@ -5,19 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="269.0" prefWidth="301.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeLandingController">
+<AnchorPane prefHeight="343.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeLandingController">
     <children>
-        <Button layoutX="56.0" layoutY="71.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="190.0" text="Desk Booking">
+        <Button layoutX="87.0" layoutY="120.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="190.0" text="Desk Booking">
             <font>
                 <Font size="19.0" />
             </font>
         </Button>
-        <Button layoutX="110.0" layoutY="175.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="81.0" text="Sign Out" textFill="RED">
+        <Button layoutX="141.0" layoutY="227.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="81.0" text="Sign Out" textFill="RED">
             <font>
                 <Font size="13.0" />
             </font>
         </Button>
-        <Label layoutX="27.0" layoutY="14.0" text="Welcome, Employee.">
+        <Label fx:id="welcomeMessage" layoutX="58.0" layoutY="55.0" text="Welcome, Employee.">
             <font>
                 <Font size="27.0" />
             </font>

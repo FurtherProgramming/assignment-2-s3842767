@@ -66,7 +66,8 @@ public class RegisterController implements Initializable {
     public void confirmClicked(ActionEvent event) throws Exception
     {
         int id = Integer.parseInt(empID.getText());
-        String ag = ageList.toString();
+        String ag = (String) ageList.getValue();
+
 
         if(empID == null || firstName == null || lastName == null || ageList == null || txtUsername == null || txtPassword == null ||
         role == null || secretQuestion == null || txtAnswer == null)
@@ -89,6 +90,7 @@ public class RegisterController implements Initializable {
             else
             {
                 System.out.println("Registry Failed!");
+                isConnected.setText("Registry Failed!");
             }
 
         }
