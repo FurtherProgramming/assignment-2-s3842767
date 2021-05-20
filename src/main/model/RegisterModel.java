@@ -29,10 +29,28 @@ public class RegisterModel {
         }
     }
 
-    public Boolean register()
+    public Boolean register(int id, String name, String sure_name,
+                            int age, String username, String password, String jobRole, String secret_question,
+                            String secret_answer, boolean isAdmin)
+
     {
         PreparedStatement preparedStatement = null;
-        String query = "insert into employee values (empID, firstName, lastName, txtUsername, txtPassword, secretQuestion, txtAnswer)";
+        ResultSet result = null;
+        String query = "insert into employee values (empID, firstName, lastName, age, txtUsername, txtPassword, jobRole, secretQuestion, txtAnswer, isAdmin)";
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(query);
+            result = preparedStatement.executeQuery();
+            if(result.next())
+            {
+                return true;
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Something Happened...");
+        }
         return false;
     }
 }

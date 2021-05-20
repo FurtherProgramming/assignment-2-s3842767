@@ -11,7 +11,7 @@ public class LoginModel {
 
     Connection connection;
 
-    public UserSession session;
+    UserSession session;
 
     public LoginModel(){
 
@@ -44,9 +44,8 @@ public class LoginModel {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 System.out.println("Login successful");
-                this.session = new UserSession(resultSet.getInt("id"), resultSet.getInt("age"), resultSet.getString("name"), resultSet.getString("surename"), resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("role"), resultSet.getString("secret_question"), resultSet.getString("secret_answer"), resultSet.getBoolean("isAdmin"));
-                System.out.println(this.session.getId());
-                System.out.println("Returning true..");
+                this.session = new UserSession(resultSet.getInt("id"), resultSet.getInt("age"), resultSet.getString("name"), resultSet.getString("sure name"), resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("role"), resultSet.getString("secret_question"), resultSet.getString("secret_answer"), resultSet.getBoolean("isAdmin"));
+                System.out.println(this.session.getName());
                 return true;
             }
             else{
@@ -62,6 +61,11 @@ public class LoginModel {
 
         }
 
+    }
+
+    public UserSession getSession()
+    {
+        return session;
     }
 
 }

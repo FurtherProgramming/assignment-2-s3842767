@@ -13,9 +13,9 @@ public class UserSession
     Connection connection;
     public ResultSet session;
 
-    private int id, age;
-    private String name, surname, username, password, role, secretQuestion, secretAnswer;
-    private boolean isAdmin;
+    private static int id, age;
+    private static String name, surname, username, password, role, secretQuestion, secretAnswer;
+    private static boolean isAdmin;
 
     public UserSession(int id, int age, String name, String surname, String username, String password, String role, String secretQuestion, String secretAnswer, boolean isAdmin) {
         this.id = id;
@@ -30,15 +30,15 @@ public class UserSession
         this.isAdmin = isAdmin;
     }
 
-    public int getId() {
+    public static int getId() {
         return id;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public boolean isAdmin() {
+    public static boolean isAdmin() {
         return isAdmin;
     }
 

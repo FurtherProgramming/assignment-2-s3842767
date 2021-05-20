@@ -22,7 +22,7 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="194.0" layoutY="29.0" text="Welcome, ADMIN.">
+      <Label fx:id="welcomeMessage" layoutX="194.0" layoutY="29.0" text="Welcome, ADMIN.">
          <font>
             <Font size="27.0" />
          </font>

@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import main.model.LoginModel;
 import main.model.UserSession;
 import main.Main;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    public LoginModel loginModel = new LoginModel();
+    public static LoginModel loginModel = new LoginModel();
     @FXML
     private Label isConnected;
     @FXML
@@ -42,10 +43,9 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent event) throws Exception{
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-                System.out.println("Here!!");
                 isConnected.setText("Logged in successfully");
 
-                if(loginModel.session.isAdmin() == true)
+                if(loginModel.getSession().isAdmin() == true)
                 {
                     System.out.println("Is Admin");
                     Parent root = FXMLLoader.load(getClass().getResource("/main/ui/admin-landing.fxml"));
