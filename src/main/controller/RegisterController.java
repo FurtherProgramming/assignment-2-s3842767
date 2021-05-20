@@ -1,5 +1,6 @@
 package main.controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -39,9 +41,12 @@ public class RegisterController implements Initializable {
     private TextField secretQuestion;
     @FXML
     private TextField txtAnswer;
+    @FXML
+            private ChoiceBox ageList;
 
     private Stage stage;
     private Scene scene;
+    private final int MAX_AGE = 100;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -50,14 +55,20 @@ public class RegisterController implements Initializable {
         }else{
             isConnected.setText("Not Connected");
         }
+
+        for(int i = 0; i < MAX_AGE; i++)
+        {
+            String s = String.valueOf(i);
+            ageList.getItems().add(s);
+        }
     }
 
     public void confirmClicked(ActionEvent event) throws Exception
     {
         int id = Integer.parseInt(empID.getText());
-        int ag = Integer.parseInt(age.getText());
+        String ag = ageList.toString();
 
-        if(empID == null || firstName == null || lastName == null || age == null || txtUsername == null || txtPassword == null ||
+        if(empID == null || firstName == null || lastName == null || ageList == null || txtUsername == null || txtPassword == null ||
         role == null || secretQuestion == null || txtAnswer == null)
         {
             isConnected.setText("One or more fields are empty");
