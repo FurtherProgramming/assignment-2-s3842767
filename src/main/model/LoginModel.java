@@ -1,7 +1,6 @@
 package main.model;
 
 import main.SQLConnection;
-import org.sqlite.SQLiteConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +10,8 @@ import java.sql.SQLException;
 public class LoginModel {
 
     Connection connection;
+
+    public UserSession session;
 
     public LoginModel(){
 
@@ -29,7 +30,8 @@ public class LoginModel {
         }
     }
 
-    public Boolean isLogin(String user, String pass) throws SQLException {
+    public Boolean isLogin(String user, String pass) throws Exception {
+
         PreparedStatement preparedStatement = null;
         ResultSet resultSet=null;
         String query = "select * from employee where username = ? and password= ?";
@@ -41,6 +43,10 @@ public class LoginModel {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                System.out.println("Login successful");
+                this.session = new UserSession(resultSet.getInt("id"), resultSet.getInt("age"), resultSet.getString("name"), resultSet.getString("surename"), resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("role"), resultSet.getString("secret_question"), resultSet.getString("secret_answer"), resultSet.getBoolean("isAdmin"));
+                System.out.println(this.session.getId());
+                System.out.println("Returning true..");
                 return true;
             }
             else{
@@ -53,6 +59,7 @@ public class LoginModel {
         }finally {
            preparedStatement.close();
            resultSet.close();
+
         }
 
     }

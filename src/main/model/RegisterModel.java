@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Connection;
 
 public class RegisterModel {
     Connection connection;
@@ -26,5 +27,12 @@ public class RegisterModel {
         catch(Exception e){
             return false;
         }
+    }
+
+    public Boolean register()
+    {
+        PreparedStatement preparedStatement = null;
+        String query = "insert into employee values (empID, firstName, lastName, txtUsername, txtPassword, secretQuestion, txtAnswer)";
+        return false;
     }
 }
