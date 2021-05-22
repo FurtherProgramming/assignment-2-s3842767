@@ -56,7 +56,7 @@ public class LoginController implements Initializable {
                 }
                 else
                 {
-                    System.out.println("Is NOT Admin!!!!");
+                    System.out.println("Is not Admin");
                     Parent root = FXMLLoader.load(getClass().getResource("/main/ui/employee-landing.fxml"));
                     Stage stage = Main.getPrimaryStage();
                     Scene scene = new Scene(root);

@@ -42,23 +42,19 @@ public class UserSession
         return isAdmin;
     }
 
-//        public UserSession(){
-//        connection = SQLConnection.connect();
-//        if (connection == null)
-//            System.exit(1);
-//    }
-
-//    public boolean isAdmin() throws Exception
-//    {
-//        if(session.getBoolean("isAdmin") == true)
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
+    public static void signOut()
+    {
+        id = 0;
+        age = null;
+        name = null;
+        surname = null;
+        username = null;
+        password = null;
+        role = null;
+        secretQuestion = null;
+        secretAnswer = null;
+        isAdmin = false;
+    }
 
 }
 
