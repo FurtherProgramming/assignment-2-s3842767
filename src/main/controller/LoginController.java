@@ -45,7 +45,7 @@ public class LoginController implements Initializable {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
                 isConnected.setText("Logged in successfully");
 
-                if(loginModel.getSession().isAdmin() == true)
+                if(loginModel.getSession().isAdmin())
                 {
                     System.out.println("Is Admin");
                     Parent root = FXMLLoader.load(getClass().getResource("/main/ui/admin-landing.fxml"));
@@ -70,6 +70,16 @@ public class LoginController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void backHome(ActionEvent event) throws Exception
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/home.fxml"));
+        Stage stage = Main.getPrimaryStage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        System.out.println("Back to Home...");
+        stage.show();
     }
 
 

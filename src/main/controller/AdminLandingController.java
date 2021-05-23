@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import main.Main;
 import main.model.UserSession;
 
+import javax.swing.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -33,6 +34,16 @@ public class AdminLandingController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         System.out.println("Signing Out...");
+        stage.show();
+    }
+
+    public void manageEmployees(ActionEvent event) throws Exception
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/employee-manager.fxml"));
+        Stage stage = Main.getPrimaryStage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        System.out.println("Going to manageEmployees");
         stage.show();
     }
 

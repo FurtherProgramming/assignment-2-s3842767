@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="635.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.ui.DeskBooking">
+<AnchorPane prefHeight="635.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.DeskBookingController">
    <children>
       <Pane layoutX="33.0" layoutY="29.0" prefHeight="433.0" prefWidth="819.0" style="-fx-background-color: #e8e8e8;">
          <children>
@@ -45,7 +44,7 @@
       </Label>
       <Button layoutX="731.0" layoutY="468.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" text="Book Table" />
       <Button layoutX="731.0" layoutY="515.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" text="Remove Booking" />
-      <Button layoutX="731.0" layoutY="568.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" text="Close" />
+      <Button layoutX="731.0" layoutY="568.0" mnemonicParsing="false" onAction="#backToLanding" prefHeight="40.0" prefWidth="109.0" text="Close" />
       <Label layoutX="493.0" layoutY="467.0" text="Key:">
          <font>
             <Font size="15.0" />

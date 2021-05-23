@@ -25,6 +25,17 @@ public class EmployeeLandingController implements Initializable {
         welcomeMessage.setText("Welcome, " + UserSession.getName());
     }
 
+    public void empBookClicked(ActionEvent event) throws Exception
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/desk-booking.fxml"));
+        Stage stage = Main.getPrimaryStage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        System.out.println("Going to DeskBooking..");
+        stage.show();
+    }
+
+
     public void signOut(ActionEvent event) throws Exception
     {
         UserSession.signOut();

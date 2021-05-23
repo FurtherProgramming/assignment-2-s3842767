@@ -29,7 +29,7 @@ public class RegisterModel {
         }
     }
 
-    public Boolean register(int id, String name, String sure_name,
+    public Boolean register(String id, String name, String sure_name,
                             String age, String username, String password, String jobRole, String secret_question,
                             String secret_answer, boolean isAdmin) throws Exception
 
@@ -43,7 +43,7 @@ public class RegisterModel {
         {
             //System.out.println("All good :)");
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setString(1, id);
             preparedStatement.setString(2, name);
             preparedStatement.setString(3, sure_name);
             preparedStatement.setString(4, age);

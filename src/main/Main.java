@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.model.InitializeApplication;
+
+import java.sql.Connection;
 
 public class Main extends Application {
 
@@ -13,6 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.primaryStage = primaryStage;
+        InitializeApplication.initializeDesks();
         Parent root = FXMLLoader.load(getClass().getResource("ui/home.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -28,6 +32,7 @@ public class Main extends Application {
     {
         return primaryStage;
     }
+
 }
 
 

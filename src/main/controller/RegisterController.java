@@ -65,21 +65,25 @@ public class RegisterController implements Initializable {
 
     public void confirmClicked(ActionEvent event) throws Exception
     {
-        int id = Integer.parseInt(empID.getText());
         String ag = (String) ageList.getValue();
 
-
-        if(empID == null || firstName == null || lastName == null || ageList == null || txtUsername == null || txtPassword == null ||
-        role == null || secretQuestion == null || txtAnswer == null)
+        if(emptyFields(empID.getText(), firstName.getText(), lastName.getText(), ag, txtUsername.getText(),
+                txtPassword.getText(), role.getText(), secretQuestion.getText(), txtAnswer.getText()))
         {
+            System.out.println("empty fields");
             isConnected.setText("One or more fields are empty");
         }
         else
         {
-            if(registerModel.register(id, firstName.getText(), lastName.getText(), ag, txtUsername.getText(),
+            if(registerModel.register(empID.getText(), firstName.getText(), lastName.getText(), ag, txtUsername.getText(),
                     txtPassword.getText(), role.getText(), secretQuestion.getText(), txtAnswer.getText(), false))
             {
-                System.out.println("Confirm Registry...");
+                System.out.println("New Account Registered!");
+                System.out.println("id:" + empID.getText());
+                System.out.println("first name:" + firstName.getText());
+                System.out.println("last name:" + lastName.getText());
+                System.out.println("username:" + firstName.getText());
+                System.out.println("secretQuestion:" + secretQuestion.getText());
                 System.out.println("Going back home...");
                 Parent root = FXMLLoader.load(getClass().getResource("/main/ui/home.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -93,6 +97,25 @@ public class RegisterController implements Initializable {
                 isConnected.setText("Registry Failed!");
             }
 
+        }
+    }
+
+    public boolean emptyFields(String id, String name, String sure_name,
+                               String age, String username, String password, String jobRole, String secret_question,
+                               String secret_answer)
+    {
+        try
+        {
+            if(id.isEmpty() || name.isEmpty() || sure_name.isEmpty() || age.isEmpty() || username.isEmpty() || password.isEmpty() ||
+                    jobRole.isEmpty() || secret_question.isEmpty() || secret_answer.isEmpty())
+            {
+                return true;
+            }
+            return false;
+        }
+        catch(Exception e)
+        {
+            return true;
         }
     }
 

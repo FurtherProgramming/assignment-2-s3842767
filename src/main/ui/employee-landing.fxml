@@ -7,7 +7,7 @@
 
 <AnchorPane prefHeight="343.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeLandingController">
     <children>
-        <Button layoutX="87.0" layoutY="120.0" mnemonicParsing="false" prefHeight="87.0" prefWidth="190.0" text="Desk Booking">
+        <Button layoutX="87.0" layoutY="120.0" mnemonicParsing="false" onAction="#empBookClicked" prefHeight="87.0" prefWidth="190.0" text="Desk Booking">
             <font>
                 <Font size="19.0" />
             </font>
