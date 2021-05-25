@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 public class UserSession
 {
-    Connection connection;
     public ResultSet session;
 
     private static int id;

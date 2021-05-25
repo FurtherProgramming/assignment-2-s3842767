@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.Main;
 import main.model.DeskModel;
@@ -19,65 +20,56 @@ import java.util.ResourceBundle;
 public class DeskBookingController implements Initializable {
 
     InitializeApplication initApp = new InitializeApplication();
-    private String selectedButton;
+    int cat = 1;
     private final int NUMBER_OF_DESKS = 15;
     private final String occupiedColour = "red";
     private final String freeColour = "green";
     private final String lockedColour = "orange";
+    public static ArrayList<DeskModel> deskList = new ArrayList<>();
+    public ArrayList<Button> deskButtonList = new ArrayList();
 
     @FXML
     Button desk1;
-
     @FXML
     Button desk2;
-
     @FXML
     Button desk3;
-
     @FXML
     Button desk4;
-
     @FXML
     Button desk5;
-
     @FXML
     Button desk6;
-
     @FXML
     Button desk7;
-
-
     @FXML
     Button desk8;
-
     @FXML
     Button desk9;
-
     @FXML
     Button desk10;
-
     @FXML
     Button desk11;
-
     @FXML
     Button desk12;
-
     @FXML
     Button desk13;
-
     @FXML
     Button desk14;
-
     @FXML
     Button desk15;
 
-    public static ArrayList<DeskModel> deskList = new ArrayList<>();
-    public ArrayList<Button> deskButtonList = new ArrayList();
+    @FXML
+    Label status;
+    @FXML
+    Label selectedButton;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        selectedButton.setText("None");
+
         deskButtonList.add(desk1);
         deskButtonList.add(desk2);
         deskButtonList.add(desk3);
@@ -138,9 +130,79 @@ public class DeskBookingController implements Initializable {
         }
     }
 
-    public void initializeDesks()
+    public void desk1Clicked(ActionEvent event)
     {
+        selectedButton.setText(desk1.getText());
+    }
 
+    public void desk2Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk2.getText());
+    }
+
+    public void desk3Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk3.getText());
+    }
+
+    public void desk4Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk4.getText());
+    }
+
+    public void desk5Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk5.getText());
+    }
+
+    public void desk6Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk6.getText());
+    }
+
+    public void desk7Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk7.getText());
+    }
+
+    public void desk8Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk8.getText());
+    }
+
+    public void desk9Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk9.getText());
+    }
+
+    public void desk10Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk10.getText());
+    }
+
+    public void desk11Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk11.getText());
+    }
+
+    public void desk12Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk12.getText());
+    }
+
+    public void desk13Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk13.getText());
+    }
+
+    public void desk14Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk14.getText());
+    }
+
+    public void desk15Clicked(ActionEvent event)
+    {
+        selectedButton.setText(desk15.getText());
     }
 
     public void backToLanding(ActionEvent event) throws Exception
