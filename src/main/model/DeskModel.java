@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 
 public class DeskModel {
     static Connection connection;
-    private static String id;
-    private static boolean isOccupied, isLocked;
-    private static String empID;
-    private static Button deskButton;
+    private String id;
+    private boolean isOccupied, isLocked;
+    private String empID;
+    private Button deskButton;
 
     private final String red = "-fx-background-color: #ff0000;";
     private final String green = "-fx-background-color: #00ff22;";
@@ -26,9 +26,47 @@ public class DeskModel {
         this.deskButton = deskButton;
     }
 
+    public String getId()
+    {
+        return id;
+    }
+
     public void setColour(String colour)
     {
+        if(colour == "green")
+        {
+            deskButton.setStyle(green);
+        }
+        if(colour == "red")
+        {
+            deskButton.setStyle(red);
+        }
+        if(colour == "orange")
+        {
+            deskButton.setStyle(orange);
+        }
 
+
+    }
+
+    public boolean getOccupied()
+    {
+        return isOccupied;
+    }
+
+    public boolean getLocked()
+    {
+        return isLocked;
+    }
+
+    public void setButtonText(String text)
+    {
+        deskButton.setText(text);
+    }
+
+    public Button getButton()
+    {
+        return deskButton;
     }
 
     public static ResultSet getDeskResultSet() throws Exception

@@ -10,21 +10,21 @@
    <children>
       <Pane layoutX="33.0" layoutY="29.0" prefHeight="433.0" prefWidth="819.0" style="-fx-background-color: #e8e8e8;">
          <children>
-            <Button layoutX="33.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="33.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="33.0" layoutY="246.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="757.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="757.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="757.0" layoutY="246.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="64.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button layoutX="196.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button layoutX="334.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button layoutX="492.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button layoutX="637.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button layoutX="358.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="421.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="358.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
-            <Button layoutX="421.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="31.0" text="b" />
+            <Button fx:id="desk1" layoutX="33.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="d12" />
+            <Button fx:id="desk2" layoutX="33.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk3" layoutX="33.0" layoutY="246.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk11" layoutX="747.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk10" layoutX="747.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk9" layoutX="747.0" layoutY="246.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk4" layoutX="64.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
+            <Button fx:id="desk5" layoutX="196.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
+            <Button fx:id="desk6" layoutX="334.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
+            <Button fx:id="desk7" layoutX="492.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
+            <Button fx:id="desk8" layoutX="637.0" layoutY="373.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="109.0" text="b" />
+            <Button fx:id="desk12" layoutX="348.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk15" layoutX="421.0" layoutY="27.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk13" layoutX="348.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk14" layoutX="421.0" layoutY="136.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="41.0" text="b" />
          </children>
       </Pane>
       <Label layoutX="33.0" layoutY="477.0" text="Selected:">
