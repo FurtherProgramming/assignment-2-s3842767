@@ -10,16 +10,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.Main;
+import main.model.DeskBookModel;
 import main.model.DeskModel;
 import main.model.InitializeApplication;
+import main.model.UserSession;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class DeskBookingController implements Initializable {
 
     InitializeApplication initApp = new InitializeApplication();
+    DeskBookModel deskBookModel = new DeskBookModel();
     int cat = 1;
     private final int NUMBER_OF_DESKS = 15;
     private final String occupiedColour = "red";
@@ -69,6 +73,7 @@ public class DeskBookingController implements Initializable {
     public void initialize(URL location, ResourceBundle resources)
     {
         selectedButton.setText("None");
+        status.setText("Status");
 
         deskButtonList.add(desk1);
         deskButtonList.add(desk2);
@@ -85,6 +90,56 @@ public class DeskBookingController implements Initializable {
         deskButtonList.add(desk13);
         deskButtonList.add(desk14);
         deskButtonList.add(desk15);
+
+        try {
+            deskList = initApp.initializeDesks(deskButtonList);
+        } catch (Exception e) {
+            System.out.println("Error in initialize");
+            e.printStackTrace();
+        }
+
+        // Makes the buttons colourful
+        for(int i = 0; i < deskList.size(); i++)
+        {
+
+            // Set Colour of Buttons
+            if(!deskList.get(i).getOccupied())
+            {
+                deskList.get(i).setColour(freeColour);
+            }
+            if(deskList.get(i).getOccupied())
+            {
+                deskList.get(i).setColour(occupiedColour);
+            }
+            if(deskList.get(i).getLocked())
+            {
+                deskList.get(i).setColour(lockedColour);
+            }
+
+            deskList.get(i).setButtonText(deskList.get(i).getId());
+
+            desk1 = deskList.get(0).getButton();
+            desk2 = deskList.get(1).getButton();
+            desk3 = deskList.get(2).getButton();
+            desk4 = deskList.get(3).getButton();
+            desk5 = deskList.get(4).getButton();
+            desk6 = deskList.get(5).getButton();
+            desk7 = deskList.get(6).getButton();
+            desk8 = deskList.get(7).getButton();
+            desk9 = deskList.get(8).getButton();
+            desk10 = deskList.get(9).getButton();
+            desk11 = deskList.get(10).getButton();
+            desk12 = deskList.get(11).getButton();
+            desk13 = deskList.get(12).getButton();
+            desk14 = deskList.get(13).getButton();
+            desk15 = deskList.get(14).getButton();
+        }
+    }
+
+    // updates the GUI by reinitializing the desk buttons after the user commits an action
+    public void updateGUI()
+    {
+        selectedButton.setText("None");
 
         try {
             deskList = initApp.initializeDesks(deskButtonList);
@@ -129,6 +184,45 @@ public class DeskBookingController implements Initializable {
             desk15 = deskList.get(14).getButton();
         }
     }
+
+    public boolean bookButton(ActionEvent event) throws SQLException {
+        if(selectedButton.getText() == "None")
+        {
+            status.setText("No desk selected");
+            return false;
+        }
+        if(deskBookModel.bookTable(selectedButton.getText(), UserSession.getId()))
+        {
+            status.setText("Booked Successfully");
+            updateGUI();
+            return true;
+        }
+        else
+        {
+            status.setText("An error has occurred");
+            return false;
+        }
+    }
+
+    public boolean remBook(ActionEvent event) throws SQLException
+    {
+
+        if(deskBookModel.removeTable(UserSession.getId()))
+        {
+            status.setText("Removed Booking");
+            updateGUI();
+            return true;
+        }
+        else
+        {
+            status.setText("An error has occurred");
+            return false;
+        }
+    }
+
+
+
+    // The following are just action methods for the desk buttons
 
     public void desk1Clicked(ActionEvent event)
     {

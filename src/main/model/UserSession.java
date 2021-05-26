@@ -12,11 +12,11 @@ public class UserSession
 {
     public ResultSet session;
 
-    private static int id;
+    private static String id;
     private static String age, name, surname, username, password, role, secretQuestion, secretAnswer;
     private static boolean isAdmin;
 
-    public UserSession(int id, String age, String name, String surname, String username, String password, String role, String secretQuestion, String secretAnswer, boolean isAdmin) {
+    public UserSession(String id, String age, String name, String surname, String username, String password, String role, String secretQuestion, String secretAnswer, boolean isAdmin) {
         this.id = id;
         this.age = age;
         this.name = name;
@@ -29,7 +29,7 @@ public class UserSession
         this.isAdmin = isAdmin;
     }
 
-    public static int getId() {
+    public static String getId() {
         return id;
     }
 
@@ -43,7 +43,7 @@ public class UserSession
 
     public static void signOut()
     {
-        id = 0;
+        id = null;
         age = null;
         name = null;
         surname = null;

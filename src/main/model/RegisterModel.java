@@ -34,6 +34,7 @@ public class RegisterModel {
                             String secret_answer, boolean isAdmin) throws Exception
 
     {
+        boolean reg;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
         // String query = "insert into employee (id, name, surname, age, username, password, role, secret_question, secret_answer, isAdmin) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -54,13 +55,16 @@ public class RegisterModel {
             preparedStatement.setString(9, secret_answer);
             preparedStatement.setBoolean(10, isAdmin);
             preparedStatement.executeUpdate();
-            return true;
+            reg = true;
         }
         catch (Exception e)
         {
             System.out.println(e);
-            return false;
+            reg = false;
+        } finally {
+            preparedStatement.close();
+            result.close();
         }
-
+        return reg;
     }
 }

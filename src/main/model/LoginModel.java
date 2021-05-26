@@ -44,7 +44,7 @@ public class LoginModel {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 System.out.println("Login successful");
-                this.session = new UserSession(resultSet.getInt("id"), resultSet.getString("age"), resultSet.getString("name"), resultSet.getString("surname"), resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("role"), resultSet.getString("secret_question"), resultSet.getString("secret_answer"), resultSet.getBoolean("isAdmin"));
+                this.session = new UserSession(resultSet.getString("id"), resultSet.getString("age"), resultSet.getString("name"), resultSet.getString("surname"), resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("role"), resultSet.getString("secret_question"), resultSet.getString("secret_answer"), resultSet.getBoolean("isAdmin"));
                 System.out.println(this.session.getName());
                 return true;
             }

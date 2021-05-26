@@ -37,13 +37,13 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="567.0" text="Status">
+      <Label fx:id="status" layoutX="33.0" layoutY="567.0" text="Status">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button layoutX="731.0" layoutY="468.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" text="Book Table" />
-      <Button layoutX="731.0" layoutY="515.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="109.0" text="Remove Booking" />
+      <Button layoutX="731.0" layoutY="468.0" mnemonicParsing="false" onAction="#bookButton" prefHeight="40.0" prefWidth="109.0" text="Book Table" />
+      <Button layoutX="731.0" layoutY="515.0" mnemonicParsing="false" onAction="#remBook" prefHeight="40.0" prefWidth="109.0" text="Remove Booking" />
       <Button layoutX="731.0" layoutY="568.0" mnemonicParsing="false" onAction="#backToLanding" prefHeight="40.0" prefWidth="109.0" text="Close" />
       <Label layoutX="493.0" layoutY="467.0" text="Key:">
          <font>
