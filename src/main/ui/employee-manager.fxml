@@ -7,18 +7,18 @@
 
 <AnchorPane prefHeight="635.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeManagerController">
    <children>
-      <TableView layoutX="36.0" layoutY="30.0" prefHeight="441.0" prefWidth="992.0">
+      <TableView fx:id="userTable" layoutX="36.0" layoutY="30.0" prefHeight="441.0" prefWidth="992.0">
         <columns>
-          <TableColumn prefWidth="53.999969482421875" text="ID" />
-          <TableColumn prefWidth="111.0" text="Name" />
-            <TableColumn minWidth="0.0" prefWidth="106.0" text="Surname" />
-            <TableColumn minWidth="0.0" prefWidth="51.0" text="Age" />
-            <TableColumn minWidth="0.0" prefWidth="98.0" text="Username" />
-            <TableColumn minWidth="0.0" prefWidth="97.0" text="Password" />
-            <TableColumn minWidth="0.0" prefWidth="94.0" text="Role" />
-            <TableColumn minWidth="0.0" prefWidth="54.0" text="Is Admin?" />
-            <TableColumn minWidth="0.0" prefWidth="173.0" text="Secret Question" />
-            <TableColumn minWidth="0.0" prefWidth="153.0" text="Secret Answer" />
+          <TableColumn fx:id="idCol" prefWidth="53.999969482421875" text="ID" />
+          <TableColumn fx:id="nameCol" prefWidth="111.0" text="Name" />
+            <TableColumn fx:id="surnameCol" minWidth="0.0" prefWidth="106.0" text="Surname" />
+            <TableColumn fx:id="ageCol" minWidth="0.0" prefWidth="51.0" text="Age" />
+            <TableColumn fx:id="usernameCol" minWidth="0.0" prefWidth="98.0" text="Username" />
+            <TableColumn fx:id="passwordCol" minWidth="0.0" prefWidth="97.0" text="Password" />
+            <TableColumn fx:id="roleCol" minWidth="0.0" prefWidth="94.0" text="Role" />
+            <TableColumn fx:id="adminCol" minWidth="0.0" prefWidth="54.0" text="Is Admin?" />
+            <TableColumn fx:id="questionCol" minWidth="0.0" prefWidth="173.0" text="Secret Question" />
+            <TableColumn fx:id="answerCol" minWidth="0.0" prefWidth="153.0" text="Secret Answer" />
         </columns>
       </TableView>
       <Button layoutX="919.0" layoutY="561.0" mnemonicParsing="false" onAction="#backToLanding" prefHeight="45.0" prefWidth="109.0" text="Close" />
