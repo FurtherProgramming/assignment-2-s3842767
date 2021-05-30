@@ -94,5 +94,25 @@ public class EmployeeManagerModel {
         return update;
     }
 
+    public boolean deleteItemFromTable(String id)
+    {
+        boolean delete = false;
+        PreparedStatement preparedStatement = null;
+
+        String query = "delete from Employee where id = ?";
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, id);
+            preparedStatement.executeUpdate();
+            delete = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            delete = false;
+        }
+        return delete;
+    }
+
 
 }

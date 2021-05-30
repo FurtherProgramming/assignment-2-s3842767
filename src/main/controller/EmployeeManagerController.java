@@ -2,6 +2,7 @@ package main.controller;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import main.Main;
+import main.model.DeskBookModel;
+import main.model.DeskModel;
 import main.model.UserModel;
 import main.model.EmployeeManagerModel;
 
@@ -75,41 +78,104 @@ public class EmployeeManagerController implements Initializable {
 
         userTable.setEditable(true);
 
-        // id
+        // id IS NOT NULL!
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         idCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        idCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setId(event.getNewValue());
+            }
+        });
 
         // name
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setName(event.getNewValue());
+            }
+        });
 
         // surname
         surnameCol.setCellValueFactory(new PropertyValueFactory<>("surname"));
         surnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        surnameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setSurname(event.getNewValue());
+            }
+        });
 
         // age
         ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
         ageCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        ageCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setAge(event.getNewValue());
+            }
+        });
 
         // username
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         usernameCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        usernameCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setUsername(event.getNewValue());
+            }
+        });
 
         // password
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
         passwordCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        passwordCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setPassword(event.getNewValue());
+            }
+        });
 
         // role
         roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
         roleCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        roleCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setRole(event.getNewValue());
+            }
+        });
 
         // secret question
         questionCol.setCellValueFactory(new PropertyValueFactory<>("secretQuestion"));
         questionCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        questionCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setSecretQuestion(event.getNewValue());
+            }
+        });
 
         // secret answer
         answerCol.setCellValueFactory(new PropertyValueFactory<>("secretAnswer"));
         answerCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        answerCol.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<UserModel, String>>() {
+            @Override
+            public void handle(TableColumn.CellEditEvent<UserModel, String> event) {
+                UserModel user = event.getRowValue();
+                user.setSecretAnswer(event.getNewValue());
+            }
+        });
 
         // admin
         adminCol.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
@@ -130,6 +196,24 @@ public class EmployeeManagerController implements Initializable {
         {
             statusLabel.setText("Something went wrong...");
         }
+    }
+
+    public void deleteButton(ActionEvent event) throws Exception
+    {
+        DeskBookModel deskBookModel = new DeskBookModel();
+        UserModel user = userTable.getSelectionModel().getSelectedItem();
+        if(empManModel.deleteItemFromTable(user.getId()))
+        {
+            String name = user.getName();
+            userTable.getItems().remove(user);
+            deskBookModel.removeTable(user.getId());
+            statusLabel.setText("Deleted " + name + " successfully");
+        }
+        else
+        {
+            statusLabel.setText("Something went wrong...");
+        }
+
     }
 
     public void backToLanding(ActionEvent event) throws Exception
