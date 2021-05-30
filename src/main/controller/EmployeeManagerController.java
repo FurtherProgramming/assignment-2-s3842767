@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -57,6 +58,9 @@ public class EmployeeManagerController implements Initializable {
 
     @FXML
     TableColumn<UserModel, Boolean> adminCol;
+
+    @FXML
+    Label statusLabel;
 
     ObservableList<UserModel> userList;
 
@@ -118,7 +122,14 @@ public class EmployeeManagerController implements Initializable {
 
     public void saveChanges(ActionEvent event) throws Exception
     {
-        empManModel.saveChangesToTable(userList);
+        if(empManModel.saveChangesToTable(userList))
+        {
+            statusLabel.setText("Updated Successfully");
+        }
+        else
+        {
+            statusLabel.setText("Something went wrong...");
+        }
     }
 
     public void backToLanding(ActionEvent event) throws Exception
