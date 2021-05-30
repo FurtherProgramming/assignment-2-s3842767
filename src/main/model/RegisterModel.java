@@ -36,7 +36,6 @@ public class RegisterModel {
     {
         boolean reg;
         PreparedStatement preparedStatement = null;
-        ResultSet result = null;
         // String query = "insert into employee (id, name, surname, age, username, password, role, secret_question, secret_answer, isAdmin) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String query = "insert into employee values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -63,7 +62,6 @@ public class RegisterModel {
             reg = false;
         } finally {
             preparedStatement.close();
-            result.close();
         }
         return reg;
     }

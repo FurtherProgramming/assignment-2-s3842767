@@ -51,6 +51,48 @@ public class EmployeeManagerModel {
         return userList;
     }
 
+    public boolean saveChangesToTable(ObservableList<UserModel> userList) throws SQLException
+    {
+        boolean update = false;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+
+        String getQuery = "select * from Employee";
+        String updateQuery = "update Employee set id = ?, name = ?, surname = ?, age = ?, username = ?, password = ?, role = ?, secret_question = ?, secret_answer = ? where  id = ?";
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(getQuery);
+            result = preparedStatement.executeQuery();
+
+            preparedStatement = connection.prepareStatement(updateQuery);
+            for(int i = 0; i < userList.size(); i++)
+            {
+                preparedStatement.setString(1, userList.get(i).getId());
+                preparedStatement.setString(2, userList.get(i).getName());
+                preparedStatement.setString(3, userList.get(i).getSurname());
+                preparedStatement.setString(4, userList.get(i).getAge());
+                preparedStatement.setString(5, userList.get(i).getUsername());
+                preparedStatement.setString(6, userList.get(i).getPassword());
+                preparedStatement.setString(7, userList.get(i).getRole());
+                preparedStatement.setString(8, userList.get(i).getSecretQuestion());
+                preparedStatement.setString(9, userList.get(i).getSecretAnswer());
+                preparedStatement.setString(10, userList.get(i).getId());
+                preparedStatement.executeUpdate();
+            }
+
+            update = true;
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+            update = false;
+        } finally {
+            preparedStatement.close();
+            result.close();
+        }
+        return update;
+    }
 
 
 }

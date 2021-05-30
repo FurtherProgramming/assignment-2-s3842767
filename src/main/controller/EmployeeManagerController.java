@@ -9,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 import main.Main;
 import main.model.UserModel;
@@ -67,32 +69,43 @@ public class EmployeeManagerController implements Initializable {
             e.printStackTrace();
         }
 
+        userTable.setEditable(true);
+
         // id
         idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // name
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // surname
         surnameCol.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        surnameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // age
         ageCol.setCellValueFactory(new PropertyValueFactory<>("age"));
+        ageCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // username
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+        usernameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // password
         passwordCol.setCellValueFactory(new PropertyValueFactory<>("password"));
+        passwordCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // role
         roleCol.setCellValueFactory(new PropertyValueFactory<>("role"));
+        roleCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // secret question
         questionCol.setCellValueFactory(new PropertyValueFactory<>("secretQuestion"));
+        questionCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // secret answer
         answerCol.setCellValueFactory(new PropertyValueFactory<>("secretAnswer"));
+        answerCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
         // admin
         adminCol.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
@@ -101,6 +114,11 @@ public class EmployeeManagerController implements Initializable {
 
 
 
+    }
+
+    public void saveChanges(ActionEvent event) throws Exception
+    {
+        empManModel.saveChangesToTable(userList);
     }
 
     public void backToLanding(ActionEvent event) throws Exception
