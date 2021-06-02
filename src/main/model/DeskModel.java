@@ -59,6 +59,11 @@ public class DeskModel {
         return isLocked;
     }
 
+    public String getEmpID()
+    {
+        return empID;
+    }
+
     public void setButtonText(String text)
     {
         deskButton.setText(text);

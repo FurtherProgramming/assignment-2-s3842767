@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import main.SQLConnection;
 
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,5 +115,38 @@ public class EmployeeManagerModel {
         return delete;
     }
 
+    public boolean exportEmployeeListToCSV(String exportLocation, ObservableList<UserModel> userList) throws IOException {
+        Boolean wrote = false;
+        Writer writer = null;
+        try
+        {
+            File file = new File(exportLocation);
+            if(file.createNewFile())
+            {
+                System.out.println("Successfully created file");
+            }
+            else
+            {
+                System.out.println("Cant create file, possible already exists");
+            }
 
+            writer = new BufferedWriter(new FileWriter(file));
+            for (int i = 0; i < userList.size(); i++)
+            {
+                String text = userList.get(i).getId() + "," + userList.get(i).getName() + "," + userList.get(i).getSurname() + "," + userList.get(i).getAge() + "," + userList.get(i).getUsername() + ","
+                        + userList.get(i).getPassword() + "," + userList.get(i).getRole() + "," + userList.get(i).getSecretQuestion() + "," + userList.get(i).getSecretAnswer() + "\n";
+                writer.write(text);
+            }
+            wrote = true;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            writer.flush();
+            writer.close();
+        }
+        return wrote;
+    }
 }

@@ -8,12 +8,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.Main;
-import main.model.DeskBookModel;
-import main.model.DeskModel;
-import main.model.InitializeApplication;
-import main.model.UserSession;
+import main.model.*;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -68,6 +66,12 @@ public class DeskBookingController implements Initializable {
     @FXML
     Label selectedButton;
 
+    @FXML
+    TextField exportTextField;
+
+    final String exportLocation = "D:\\desk_data.csv";
+    boolean isLocked = false;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -115,6 +119,10 @@ public class DeskBookingController implements Initializable {
             {
                 deskList.get(i).setColour(lockedColour);
             }
+
+            // Checks to see if desk lockdown is in place
+            if(deskList.get(i).getLocked())
+                isLocked = true;
 
             deskList.get(i).setButtonText(deskList.get(i).getId());
 
@@ -165,6 +173,10 @@ public class DeskBookingController implements Initializable {
                 deskList.get(i).setColour(lockedColour);
             }
 
+            // Checks to see if desk lockdown is in place
+            if(deskList.get(i).getLocked())
+                isLocked = true;
+
             deskList.get(i).setButtonText(deskList.get(i).getId());
 
             desk1 = deskList.get(0).getButton();
@@ -204,6 +216,40 @@ public class DeskBookingController implements Initializable {
         }
     }
 
+    public void lockDownTables(ActionEvent event) throws SQLException {
+        if(deskBookModel.covidLockTables(deskList, isLocked))
+        {
+            status.setText("Desks Locked/Unlocked Successfully");
+        }
+        else
+        {
+            status.setText("Something went wrong...");
+        }
+        updateGUI();
+    }
+
+    public void exportDataToCsv(ActionEvent event) throws Exception
+    {
+        String location;
+        if(exportTextField.getText().isEmpty())
+        {
+            location = exportLocation;
+        }
+        else
+        {
+            location = exportTextField.getText();
+        }
+
+        if(deskBookModel.exportDeskDataToCSV(location, deskList))
+        {
+            status.setText("Export Successful");
+        }
+        else
+        {
+            status.setText("Export Unsuccessful");
+        }
+    }
+
     public boolean remBook(ActionEvent event) throws SQLException
     {
 
@@ -218,6 +264,27 @@ public class DeskBookingController implements Initializable {
             status.setText("An error has occurred");
             return false;
         }
+    }
+
+    public void rejectBooking(ActionEvent event) throws SQLException {
+        if(selectedButton.getText() == "None")
+        {
+            status.setText("No desk selected");
+        }
+        else
+        {
+            for(DeskModel desk : deskList)
+            {
+                if(desk.getId() == selectedButton.getText())
+                {
+                    if(deskBookModel.removeTable(desk.getEmpID()))
+                        status.setText("Rejected Successfully");
+                    else
+                        status.setText("Something went wrong");
+                }
+            }
+        }
+        updateGUI();
     }
 
 
@@ -301,7 +368,15 @@ public class DeskBookingController implements Initializable {
 
     public void backToLanding(ActionEvent event) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/employee-landing.fxml"));
+        Parent root;
+        if(UserSession.isAdmin())
+        {
+            root = FXMLLoader.load(getClass().getResource("/main/ui/admin-landing.fxml"));
+        }
+        else
+        {
+            root = FXMLLoader.load(getClass().getResource("/main/ui/employee-landing.fxml"));
+        }
         Stage stage = Main.getPrimaryStage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

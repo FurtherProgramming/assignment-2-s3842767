@@ -42,14 +42,18 @@ public class InitializeApplication {
                 deskList.add(new DeskModel(result.getString("deskID"), result.getBoolean("isOccupied"), result.getBoolean("isLocked"), result.getString("employee"), deskButtonList.get(deskButtonIndex)));
                 deskButtonIndex++;
             }
-            return deskList;
         }
         catch (Exception e)
         {
             System.out.println("Error in  init Model");
             throw e;
         }
-
+        finally
+        {
+            preparedStatement.close();
+            result.close();
+        }
+        return deskList;
     }
 
 

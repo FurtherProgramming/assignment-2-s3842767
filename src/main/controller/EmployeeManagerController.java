@@ -63,9 +63,14 @@ public class EmployeeManagerController implements Initializable {
     TableColumn<UserModel, Boolean> adminCol;
 
     @FXML
+    TextField exportTextField;
+
+    @FXML
     Label statusLabel;
 
     ObservableList<UserModel> userList;
+
+    private final String exportLocation = "D:\\Employees.csv";
 
 
     @Override
@@ -176,14 +181,9 @@ public class EmployeeManagerController implements Initializable {
                 user.setSecretAnswer(event.getNewValue());
             }
         });
-
         // admin
         adminCol.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
-
         userTable.setItems(userList);
-
-
-
     }
 
     public void saveChanges(ActionEvent event) throws Exception
@@ -214,6 +214,28 @@ public class EmployeeManagerController implements Initializable {
             statusLabel.setText("Something went wrong...");
         }
 
+    }
+
+    public void exportToCsv(ActionEvent event) throws Exception
+    {
+        String location;
+        if(exportTextField.getText().isEmpty())
+        {
+            location = exportLocation;
+        }
+        else
+        {
+            location = exportTextField.getText();
+        }
+
+        if(empManModel.exportEmployeeListToCSV(location, userList))
+        {
+            statusLabel.setText("Export Successful");
+        }
+        else
+        {
+            statusLabel.setText("Export Unsuccessful");
+        }
     }
 
     public void backToLanding(ActionEvent event) throws Exception

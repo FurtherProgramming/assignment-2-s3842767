@@ -12,13 +12,13 @@ import main.Main;
 import main.model.UserSession;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AdminLandingController implements Initializable {
     @FXML
     private Label welcomeMessage;
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -29,22 +29,24 @@ public class AdminLandingController implements Initializable {
     public void signOut(ActionEvent event) throws Exception
     {
         UserSession.signOut();
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/home.fxml"));
-        Stage stage = Main.getPrimaryStage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        System.out.println("Signing Out...");
-        stage.show();
+        nextWindow("/main/ui/home.fxml");
+    }
+
+    public void manageDesks(ActionEvent event) throws IOException {
+        nextWindow("/main/ui/desk-manager.fxml");
     }
 
     public void manageEmployees(ActionEvent event) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/employee-manager.fxml"));
-        Stage stage = Main.getPrimaryStage();
+        nextWindow("/main/ui/employee-manager.fxml");
+    }
+
+    void nextWindow(String fileLocation) throws IOException {
+        Stage window = Main.getPrimaryStage();
+        Parent root = FXMLLoader.load(getClass().getResource(fileLocation));
         Scene scene = new Scene(root);
-        stage.setScene(scene);
-        System.out.println("Going to manageEmployees");
-        stage.show();
+        window.setScene(scene);
+        window.show();
     }
 
 
