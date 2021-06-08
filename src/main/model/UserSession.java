@@ -37,8 +37,22 @@ public class UserSession
         return name;
     }
 
+    public static String getUsername() {
+        return username;
+    }
+
     public static boolean isAdmin() {
         return isAdmin;
+    }
+
+    public static String getSecretQuestion()
+    {
+        return secretQuestion;
+    }
+
+    public static String getSecretAnswer()
+    {
+        return secretAnswer;
     }
 
     public static void signOut()
@@ -54,6 +68,7 @@ public class UserSession
         secretAnswer = null;
         isAdmin = false;
     }
+
 
 }
 

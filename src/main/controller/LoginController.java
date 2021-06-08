@@ -14,6 +14,7 @@ import main.model.LoginModel;
 import main.model.UserSession;
 import main.Main;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -72,9 +73,16 @@ public class LoginController implements Initializable {
         }
     }
 
-    public void backHome(ActionEvent event) throws Exception
-    {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/home.fxml"));
+    public void backHome(ActionEvent event) throws IOException {
+        nextWindow("/main/ui/home.fxml");
+    }
+
+    public void goToReset(ActionEvent event) throws IOException {
+        nextWindow("/main/ui/reset-password-question.fxml");
+    }
+
+    public void nextWindow(String location) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(location));
         Stage stage = Main.getPrimaryStage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

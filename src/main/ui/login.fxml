@@ -4,35 +4,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
+<AnchorPane prefHeight="200.0" prefWidth="416.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.LoginController">
     <children>
             <Label fx:id="isConnected" layoutX="23.0" layoutY="173.0" text="Status">
 
             </Label>
-      <TextField fx:id="txtUsername" layoutX="78.0" layoutY="33.0" AnchorPane.bottomAnchor="140.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="33.0" />
-      <PasswordField fx:id="txtPassword" layoutX="78.0" layoutY="72.0" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="72.0" />
-      <Button defaultButton="true" layoutX="126.0" layoutY="105.0" mnemonicParsing="false" onAction="#Login" prefHeight="36.0" prefWidth="62.0" style="-fx-background-color: #ffffff;" text="Login" textAlignment="CENTER" AnchorPane.bottomAnchor="59.0" AnchorPane.leftAnchor="126.0" AnchorPane.rightAnchor="112.0" AnchorPane.topAnchor="105.0">
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant>
-                     <color>
-                        <Color blue="0.025950292125344276" green="0.025950292125344276" red="0.9342105388641357" />
-                     </color>
-                  </Light.Distant>
-               </light>
-            </Lighting>
-         </effect>
+      <TextField fx:id="txtUsername" layoutX="153.0" layoutY="52.0" prefHeight="27.0" prefWidth="235.0" AnchorPane.bottomAnchor="121.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="52.0" />
+      <PasswordField fx:id="txtPassword" layoutX="152.0" layoutY="93.0" prefHeight="27.0" prefWidth="236.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="152.0" AnchorPane.rightAnchor="29.0" AnchorPane.topAnchor="93.0" />
+      <Button layoutX="239.0" layoutY="138.0" mnemonicParsing="false" onAction="#backHome" prefHeight="35.0" prefWidth="63.0" text="Back" />
+      <Button defaultButton="true" layoutX="324.0" layoutY="138.0" mnemonicParsing="false" onAction="#Login" prefHeight="35.0" prefWidth="63.0" text="Login" />
+      <Label layoutX="42.0" layoutY="57.0" text="Username">
          <font>
-            <Font name="System Font" size="13.0" />
-         </font></Button>
-      <Button layoutX="137.0" layoutY="148.0" mnemonicParsing="false" onAction="#backHome" text="Back" />
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="42.0" layoutY="98.0" text="Password">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="163.0" layoutY="14.0" prefHeight="30.0" prefWidth="115.0" text="Welcome...">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="153.0" layoutY="138.0" mnemonicParsing="false" onAction="#goToReset" prefHeight="35.0" prefWidth="63.0" text="Reset" />
 
 
     </children>

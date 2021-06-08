@@ -158,7 +158,6 @@ public class DeskBookingController implements Initializable {
 
         for(int i = 0; i < deskList.size(); i++)
         {
-
             // Set Colour of Buttons
             if(!deskList.get(i).getOccupied())
             {
@@ -203,6 +202,7 @@ public class DeskBookingController implements Initializable {
             status.setText("No desk selected");
             return false;
         }
+
         if(deskBookModel.bookTable(selectedButton.getText(), UserSession.getId()))
         {
             status.setText("Booked Successfully");
@@ -370,13 +370,9 @@ public class DeskBookingController implements Initializable {
     {
         Parent root;
         if(UserSession.isAdmin())
-        {
             root = FXMLLoader.load(getClass().getResource("/main/ui/admin-landing.fxml"));
-        }
         else
-        {
             root = FXMLLoader.load(getClass().getResource("/main/ui/employee-landing.fxml"));
-        }
         Stage stage = Main.getPrimaryStage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
