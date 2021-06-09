@@ -24,9 +24,9 @@ public class DeskBookingController implements Initializable {
     DeskBookModel deskBookModel = new DeskBookModel();
     int cat = 1;
     private final int NUMBER_OF_DESKS = 15;
-    private final String occupiedColour = "red";
-    private final String freeColour = "green";
-    private final String lockedColour = "orange";
+    private final String OCCUPIED = "red";
+    private final String FREE = "green";
+    private final String LOCKED = "orange";
     public static ArrayList<DeskModel> deskList = new ArrayList<>();
     public ArrayList<Button> deskButtonList = new ArrayList();
 
@@ -108,17 +108,11 @@ public class DeskBookingController implements Initializable {
 
             // Set Colour of Buttons
             if(!deskList.get(i).getOccupied())
-            {
-                deskList.get(i).setColour(freeColour);
-            }
+                deskList.get(i).setColour(FREE);
             if(deskList.get(i).getOccupied())
-            {
-                deskList.get(i).setColour(occupiedColour);
-            }
+                deskList.get(i).setColour(OCCUPIED);
             if(deskList.get(i).getLocked())
-            {
-                deskList.get(i).setColour(lockedColour);
-            }
+                deskList.get(i).setColour(LOCKED);
 
             // Checks to see if desk lockdown is in place
             if(deskList.get(i).getLocked())
@@ -160,17 +154,12 @@ public class DeskBookingController implements Initializable {
         {
             // Set Colour of Buttons
             if(!deskList.get(i).getOccupied())
-            {
-                deskList.get(i).setColour(freeColour);
-            }
+                deskList.get(i).setColour(FREE);
             if(deskList.get(i).getOccupied())
-            {
-                deskList.get(i).setColour(occupiedColour);
-            }
+                deskList.get(i).setColour(OCCUPIED);
             if(deskList.get(i).getLocked())
-            {
-                deskList.get(i).setColour(lockedColour);
-            }
+                deskList.get(i).setColour(LOCKED);
+
 
             // Checks to see if desk lockdown is in place
             if(deskList.get(i).getLocked())
@@ -205,7 +194,7 @@ public class DeskBookingController implements Initializable {
 
         if(deskBookModel.bookTable(selectedButton.getText(), UserSession.getId()))
         {
-            status.setText("Booked Successfully");
+            status.setText(deskBookModel.statusMessage);
             updateGUI();
             return true;
         }
@@ -219,11 +208,11 @@ public class DeskBookingController implements Initializable {
     public void lockDownTables(ActionEvent event) throws SQLException {
         if(deskBookModel.covidLockTables(deskList, isLocked))
         {
-            status.setText("Desks Locked/Unlocked Successfully");
+            status.setText(deskBookModel.statusMessage);
         }
         else
         {
-            status.setText("Something went wrong...");
+            status.setText(deskBookModel.statusMessage);;
         }
         updateGUI();
     }
@@ -255,13 +244,13 @@ public class DeskBookingController implements Initializable {
 
         if(deskBookModel.removeTable(UserSession.getId()))
         {
-            status.setText("Removed Booking");
+            status.setText(deskBookModel.statusMessage);
             updateGUI();
             return true;
         }
         else
         {
-            status.setText("An error has occurred");
+            status.setText(deskBookModel.statusMessage);
             return false;
         }
     }

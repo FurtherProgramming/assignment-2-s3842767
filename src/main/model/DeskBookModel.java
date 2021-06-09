@@ -13,10 +13,20 @@ import java.util.ArrayList;
 public class DeskBookModel {
     Connection connection;
 
-    private final String success = "success";
-    private final String occupied = "occupied";
-    private final String locked = "locked";
-    private final String alreadyBooked = "already";
+//    private final String success = "success";
+//    private final String occupied = "occupied";
+//    private final String locked = "locked";
+//    private final String alreadyBooked = "already";
+
+    private final String CONFIRM_MESSAGE = "Success";
+    private final String BOOKED_ALREADY_MESSAGE = "You have already booked a seat";
+    private final String OCCUPIED_MESSAGE = "Desk is already occupied";
+    private final String LOCKDOWN_MESSAGE = "Desk is currently locked down";
+    private final String PREV_BOOKED_MESSAGE = "You have booked this desk previously";
+    private final String ERROR_MESSAGE = "An error has occurred";
+    private final String NO_DESK_MESSAGE = "No desk selected";
+
+    public String statusMessage;
 
     public DeskBookModel(){
 
@@ -27,12 +37,13 @@ public class DeskBookModel {
     }
 
     public boolean bookTable(String deskID, String userID) throws SQLException {
-        boolean bk;
+        boolean bk = false;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
 
         String searchQuery = "select * from desk_booking where deskID = ?";
         String updateQuery = "update desk_booking set isOccupied = 1, employee = ? where deskID = ?";
+        String setPrevDeskQuery = "update Employee set prev_seat = ? where id = ?";
 
         try {
 
@@ -40,23 +51,26 @@ public class DeskBookModel {
             preparedStatement.setString(1, deskID);
             result = preparedStatement.executeQuery();
 
-            if(!checkOccupancy(result) && !checkLocked(result) && !checkBooking(userID))
+            if(!checkOccupancy(result) && !checkLocked(result) && !checkBooking(userID) && !checkPrevBooking(userID, deskID))
             {
+                // Update desk table with the booking made
                 preparedStatement = connection.prepareStatement(updateQuery);
                 preparedStatement.setString(1, userID);
                 preparedStatement.setString(2, deskID);
                 preparedStatement.executeUpdate();
+                // Update prev_desk column in employee table with the table just booked so it cant be booked the next time.
+                preparedStatement = connection.prepareStatement(setPrevDeskQuery);
+                preparedStatement.setString(1, deskID);
+                preparedStatement.setString(2, userID);
+                preparedStatement.executeUpdate();
+                statusMessage = CONFIRM_MESSAGE;
                 bk = true;
-            }
-            else
-            {
-                bk = false;
             }
         }
         catch(Exception e)
         {
             e.printStackTrace();
-            bk = false;
+            statusMessage = ERROR_MESSAGE;
         } finally {
             preparedStatement.close();
             result.close();
@@ -70,42 +84,81 @@ public class DeskBookModel {
 
         String query = "update desk_booking set isOccupied = 0, employee = NULL where employee = ?";
 
-        try
+        if(checkBooking(userID))
         {
-            if(checkBooking(userID))
+            try
             {
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, userID);
                 preparedStatement.executeUpdate();
+                statusMessage = CONFIRM_MESSAGE;
                 rm = true;
-            }
-            else
+            } catch(Exception e)
             {
-                rm = false;
+                e.printStackTrace();
+                statusMessage = ERROR_MESSAGE;
+            } finally {
+                preparedStatement.close();
             }
-        } catch(Exception e)
+        }
+        else
         {
-            rm = false;
-        } finally {
-            preparedStatement.close();
+            statusMessage = NO_DESK_MESSAGE;
         }
         return rm;
     }
 
     public boolean checkOccupancy(ResultSet result) throws SQLException {
+        boolean oc = false;
         if(result.getBoolean("isOccupied"))
         {
-            return true;
+            oc = true;
+            statusMessage = OCCUPIED_MESSAGE;
         }
-        return false;
+        return oc;
     }
 
     public boolean checkLocked(ResultSet result) throws SQLException {
+        boolean lk = false;
         if(result.getBoolean("isLocked"))
         {
-            return true;
+            lk = true;
+            statusMessage = LOCKDOWN_MESSAGE;
         }
-        return false;
+        return lk;
+    }
+
+    public boolean checkPrevBooking(String userID, String deskID) throws SQLException {
+        boolean bk = false;
+
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+
+        String getEmpQuery = "select * from employee where id = ?";
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(getEmpQuery);
+            preparedStatement.setString(1, userID);
+            result = preparedStatement.executeQuery();
+
+            if(result.getString("prev_seat").equals(deskID))
+            {
+                System.out.println("User has sat here previously");
+                statusMessage = PREV_BOOKED_MESSAGE;
+                bk = true;
+            }
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            preparedStatement.close();
+            result.close();
+        }
+        return bk;
     }
 
     public boolean checkBooking(String userID) throws SQLException {
@@ -126,6 +179,7 @@ public class DeskBookModel {
             if(result.next())
             {
                 chk = true; // Employee already exists
+                statusMessage = BOOKED_ALREADY_MESSAGE;
             }
             else
             {
@@ -192,13 +246,10 @@ public class DeskBookModel {
         {
             File file = new File(exportLocation);
             if(file.createNewFile())
-            {
                 System.out.println("Successfully created file");
-            }
             else
-            {
                 System.out.println("Cant create file, possible already exists");
-            }
+
             writer = new BufferedWriter(new FileWriter(file));
             for (int i = 0; i < deskList.size(); i++)
             {
