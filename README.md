@@ -4,7 +4,7 @@
 # Nabil Rusafee s3842767
 
 
-## HotDesk
+HotDesk
 -------------------------------------------------------------------------------------
 HotDesk is a program which manages seating arrangements at an office. It allows employees to login and book any available desk to sit in for a period of time. Administrators 
 can also manage seating arrangements  by rejecting bookings made by employees or by locking down specific seats to adhere to COVID-19 social distancing protocols.
@@ -34,7 +34,7 @@ The model has the following classes:
 - `UserModel` - Stores information about a user
 - `UserSession` - Temporarily stores information about a logged-in user.
 
-## Design
+Design
 -----------------------------
 Some design choices in this assignment are:
 - _Storing a user's session in a UserSession class_ - When a user logs in, the user's details are temporarily stored inside static variables inside
@@ -44,7 +44,7 @@ Some design choices in this assignment are:
 handles core functionality such as handling and processing data.
   
 
-## Lessons learnt
+Lessons learnt
 ---------------------
 In developing this program I have learnt how easy to use and accessible program development in Java is thanks to JavaFX and
 assistive programs such as Scene Builder. In addition, developing this program has taught me how to properly use many of Java's libraries
