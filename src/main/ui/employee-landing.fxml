@@ -5,21 +5,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="343.0" prefWidth="363.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeLandingController">
+<AnchorPane prefHeight="343.0" prefWidth="363.0" style="-fx-background-color: #fff4de;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeLandingController">
     <children>
-        <Button layoutX="87.0" layoutY="120.0" mnemonicParsing="false" onAction="#empBookClicked" prefHeight="87.0" prefWidth="190.0" text="Desk Booking">
+        <Button layoutX="87.0" layoutY="120.0" mnemonicParsing="false" onAction="#empBookClicked" prefHeight="87.0" prefWidth="190.0" style="-fx-background-color: #1d9300;" text="Desk Booking" textFill="WHITE">
             <font>
-                <Font size="19.0" />
+                <Font name="Arial Bold" size="19.0" />
             </font>
         </Button>
-        <Button layoutX="141.0" layoutY="227.0" mnemonicParsing="false" onAction="#signOut" prefHeight="42.0" prefWidth="81.0" text="Sign Out" textFill="RED">
+        <Button layoutX="141.0" layoutY="227.0" mnemonicParsing="false" onAction="#signOut" prefHeight="42.0" prefWidth="81.0" style="-fx-background-color: #ff7474;" text="Sign Out" textFill="WHITE">
             <font>
-                <Font size="13.0" />
+                <Font name="Arial Bold" size="13.0" />
             </font>
         </Button>
         <Label fx:id="welcomeMessage" layoutX="58.0" layoutY="55.0" text="Welcome, Employee." textAlignment="CENTER">
             <font>
-                <Font size="27.0" />
+                <Font name="Arial" size="27.0" />
             </font>
         </Label>
     </children>

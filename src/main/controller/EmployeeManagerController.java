@@ -60,9 +60,6 @@ public class EmployeeManagerController implements Initializable {
     TableColumn<UserModel, String> answerCol;
 
     @FXML
-    TableColumn<UserModel, Boolean> adminCol;
-
-    @FXML
     TextField exportTextField;
 
     @FXML
@@ -181,11 +178,11 @@ public class EmployeeManagerController implements Initializable {
                 user.setSecretAnswer(event.getNewValue());
             }
         });
-        // admin
-        adminCol.setCellValueFactory(new PropertyValueFactory<>("isAdmin"));
+
         userTable.setItems(userList);
     }
 
+    // Saves changes made to the employee table
     public void saveChanges(ActionEvent event) throws Exception
     {
         if(empManModel.saveChangesToTable(userList))
@@ -198,24 +195,30 @@ public class EmployeeManagerController implements Initializable {
         }
     }
 
+    // Deletes a selected employee from records.
     public void deleteButton(ActionEvent event) throws Exception
     {
-        DeskBookModel deskBookModel = new DeskBookModel();
-        UserModel user = userTable.getSelectionModel().getSelectedItem();
-        if(empManModel.deleteItemFromTable(user.getId()))
+        if(userTable.getSelectionModel().getSelectedItem() != null)
         {
-            String name = user.getName();
-            userTable.getItems().remove(user);
-            deskBookModel.removeTable(user.getId());
-            statusLabel.setText("Deleted " + name + " successfully");
+            DeskBookModel deskBookModel = new DeskBookModel();
+            UserModel user = userTable.getSelectionModel().getSelectedItem();
+            if(empManModel.deleteItemFromTable(user.getId()))
+            {
+                String name = user.getName();
+                userTable.getItems().remove(user);
+                deskBookModel.removeTable(user.getId());
+                statusLabel.setText("Deleted " + name + " successfully");
+            }
+            else
+            {
+                statusLabel.setText("Something went wrong...");
+            }
         }
         else
-        {
-            statusLabel.setText("Something went wrong...");
-        }
-
+            statusLabel.setText("Nothing Selected");
     }
 
+    // Export employee data to csv
     public void exportToCsv(ActionEvent event) throws Exception
     {
         String location;

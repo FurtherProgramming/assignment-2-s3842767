@@ -16,18 +16,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*
+ * The landing window when Admin successfully logs in, can then move onto the Employee manager or
+ * desk manager window.
+ */
 public class AdminLandingController implements Initializable {
     @FXML
     private Label welcomeMessage;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-        welcomeMessage.setText("Welcome, " + UserSession.getName());
+    public void initialize(URL location, ResourceBundle resources) {
+        welcomeMessage.setText("Welcome, " + UserSession.getName() + ".");
     }
 
-    public void signOut(ActionEvent event) throws Exception
-    {
+    public void signOut(ActionEvent event) throws Exception {
         UserSession.signOut();
         nextWindow("/main/ui/home.fxml");
     }
@@ -36,8 +38,7 @@ public class AdminLandingController implements Initializable {
         nextWindow("/main/ui/desk-manager.fxml");
     }
 
-    public void manageEmployees(ActionEvent event) throws Exception
-    {
+    public void manageEmployees(ActionEvent event) throws Exception {
         nextWindow("/main/ui/employee-manager.fxml");
     }
 
@@ -48,6 +49,4 @@ public class AdminLandingController implements Initializable {
         window.setScene(scene);
         window.show();
     }
-
-
 }

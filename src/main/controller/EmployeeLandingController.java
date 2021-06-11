@@ -11,39 +11,39 @@ import javafx.stage.Stage;
 import main.Main;
 import main.model.UserSession;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/*
+ * The landing window when Employee successfully logs in, can then move onto the desk booking page or sign out.
+ */
 public class EmployeeLandingController implements Initializable {
     @FXML
     private Label welcomeMessage;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        welcomeMessage.setText("Welcome, " + UserSession.getName());
+        welcomeMessage.setText("Welcome, " + UserSession.getName() + ".");
     }
 
     public void empBookClicked(ActionEvent event) throws Exception
     {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/desk-booking.fxml"));
-        Stage stage = Main.getPrimaryStage();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        System.out.println("Going to DeskBooking..");
-        stage.show();
+        nextWindow("/main/ui/desk-booking.fxml");
     }
-
 
     public void signOut(ActionEvent event) throws Exception
     {
         UserSession.signOut();
-        Parent root = FXMLLoader.load(getClass().getResource("/main/ui/home.fxml"));
+        nextWindow("/main/ui/home.fxml");
+    }
+
+    public void nextWindow(String location) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(location));
         Stage stage = Main.getPrimaryStage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        System.out.println("Signing Out...");
         stage.show();
     }
 

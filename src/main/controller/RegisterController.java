@@ -17,7 +17,9 @@ import java.util.ResourceBundle;
 
 import main.model.RegisterModel;
 
-
+/*
+ * The register page of the application, where a user enters their details to register to HotDesk
+ */
 public class RegisterController implements Initializable {
     RegisterModel registerModel = new RegisterModel();
 
@@ -70,7 +72,6 @@ public class RegisterController implements Initializable {
         if(emptyFields(empID.getText(), firstName.getText(), lastName.getText(), ag, txtUsername.getText(),
                 txtPassword.getText(), role.getText(), secretQuestion.getText(), txtAnswer.getText()))
         {
-            System.out.println("empty fields");
             isConnected.setText("One or more fields are empty");
         }
         else
@@ -78,13 +79,6 @@ public class RegisterController implements Initializable {
             if(registerModel.register(empID.getText(), firstName.getText(), lastName.getText(), ag, txtUsername.getText(),
                     txtPassword.getText(), role.getText(), secretQuestion.getText(), txtAnswer.getText(), false))
             {
-                System.out.println("New Account Registered!");
-                System.out.println("id:" + empID.getText());
-                System.out.println("first name:" + firstName.getText());
-                System.out.println("last name:" + lastName.getText());
-                System.out.println("username:" + firstName.getText());
-                System.out.println("secretQuestion:" + secretQuestion.getText());
-                System.out.println("Going back home...");
                 Parent root = FXMLLoader.load(getClass().getResource("/main/ui/home.fxml"));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -93,13 +87,15 @@ public class RegisterController implements Initializable {
             }
             else
             {
-                System.out.println("Registry Failed!");
-                isConnected.setText("Registry Failed!");
+                isConnected.setText(registerModel.getMessage());
             }
-
         }
     }
 
+    /*
+     * Checks if there are fields which are not filled in returns true if empty fields are present and true if all fields
+     * are filled in
+     */
     public boolean emptyFields(String id, String name, String sure_name,
                                String age, String username, String password, String jobRole, String secret_question,
                                String secret_answer)

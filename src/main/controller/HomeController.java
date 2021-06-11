@@ -10,6 +10,9 @@ import main.Main;
 
 import java.io.IOException;
 
+/*
+ * Home page of the application
+ */
 public class HomeController{
     public void loginClicked(ActionEvent event) throws Exception
     {
@@ -25,6 +28,7 @@ public class HomeController{
 
     void nextWindow(String fileLocation) throws IOException {
         Stage window = Main.getPrimaryStage();
+        window.setTitle("HotDesk");
         Parent root = FXMLLoader.load(getClass().getResource(fileLocation));
         Scene scene = new Scene(root);
         window.setScene(scene);

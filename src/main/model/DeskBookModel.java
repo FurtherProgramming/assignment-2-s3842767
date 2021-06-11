@@ -13,11 +13,6 @@ import java.util.ArrayList;
 public class DeskBookModel {
     Connection connection;
 
-//    private final String success = "success";
-//    private final String occupied = "occupied";
-//    private final String locked = "locked";
-//    private final String alreadyBooked = "already";
-
     private final String CONFIRM_MESSAGE = "Success";
     private final String BOOKED_ALREADY_MESSAGE = "You have already booked a seat";
     private final String OCCUPIED_MESSAGE = "Desk is already occupied";
@@ -36,6 +31,9 @@ public class DeskBookModel {
 
     }
 
+    /*
+     * Books an available table, returns false if desk is unavailable.
+     */
     public boolean bookTable(String deskID, String userID) throws SQLException {
         boolean bk = false;
         PreparedStatement preparedStatement = null;
@@ -46,11 +44,9 @@ public class DeskBookModel {
         String setPrevDeskQuery = "update Employee set prev_seat = ? where id = ?";
 
         try {
-
             preparedStatement = connection.prepareStatement(searchQuery);
             preparedStatement.setString(1, deskID);
             result = preparedStatement.executeQuery();
-
             if(!checkOccupancy(result) && !checkLocked(result) && !checkBooking(userID) && !checkPrevBooking(userID, deskID))
             {
                 // Update desk table with the booking made
@@ -78,6 +74,9 @@ public class DeskBookModel {
         return bk;
     }
 
+    /*
+     * If user has booked a table, removes the booking
+     */
     public boolean removeTable(String userID) throws SQLException {
         boolean rm = false;
         PreparedStatement preparedStatement = null;
@@ -108,6 +107,9 @@ public class DeskBookModel {
         return rm;
     }
 
+    /*
+     * Checks to see if desk is currently occupied or not
+     */
     public boolean checkOccupancy(ResultSet result) throws SQLException {
         boolean oc = false;
         if(result.getBoolean("isOccupied"))
@@ -118,6 +120,9 @@ public class DeskBookModel {
         return oc;
     }
 
+    /*
+     * Checks to see if desk trying to book is COVID-locked.
+     */
     public boolean checkLocked(ResultSet result) throws SQLException {
         boolean lk = false;
         if(result.getBoolean("isLocked"))
@@ -128,6 +133,9 @@ public class DeskBookModel {
         return lk;
     }
 
+    /*
+     * Checks to see if user has sat at the desk previously
+     */
     public boolean checkPrevBooking(String userID, String deskID) throws SQLException {
         boolean bk = false;
 
@@ -142,11 +150,13 @@ public class DeskBookModel {
             preparedStatement.setString(1, userID);
             result = preparedStatement.executeQuery();
 
-            if(result.getString("prev_seat").equals(deskID))
+            if(result.getString("prev_seat") != null)
             {
-                System.out.println("User has sat here previously");
-                statusMessage = PREV_BOOKED_MESSAGE;
-                bk = true;
+                if(result.getString("prev_seat").equals(deskID))
+                {
+                    statusMessage = PREV_BOOKED_MESSAGE;
+                    bk = true;
+                }
             }
         }
         catch(Exception e)
@@ -161,6 +171,9 @@ public class DeskBookModel {
         return bk;
     }
 
+    /*
+     * Checks to see if employee has already booked a desk
+     */
     public boolean checkBooking(String userID) throws SQLException {
         boolean chk;
         PreparedStatement preparedStatement = null;
@@ -197,6 +210,10 @@ public class DeskBookModel {
         return chk;
     }
 
+    /*
+     * Locks every second desk within the Desk List, deallocates seat if desk is occupied. If desks are already locked
+     * then unlocks the desks.
+     */
     public boolean covidLockTables(ArrayList<DeskModel> deskList, boolean isLocked) throws SQLException {
         boolean locked = false;
         for(int i = 0; i < deskList.size(); i++)
@@ -212,6 +229,7 @@ public class DeskBookModel {
         return locked;
     }
 
+    // Locks the tables.
     private boolean lockDesk(String deskID, boolean isLocked) throws SQLException {
         boolean locked = false;
         PreparedStatement preparedStatement = null;
@@ -239,6 +257,9 @@ public class DeskBookModel {
         return locked;
     }
 
+    /*
+     * Exports Desk information to csv
+     */
     public boolean exportDeskDataToCSV(String exportLocation, ArrayList<DeskModel> deskList) throws IOException {
         Boolean wrote = false;
         Writer writer = null;

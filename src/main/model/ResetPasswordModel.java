@@ -10,6 +10,7 @@ import java.util.Random;
 
 public class ResetPasswordModel {
     final int RAND_PASS_SIZE = 8;
+    static final String CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     Connection connection;
     UserSession session;
 
@@ -23,6 +24,9 @@ public class ResetPasswordModel {
 
     }
 
+    /*
+     * Gets user from username input and places their information into the UserSession
+     */
     public Boolean getUser(String user) throws Exception {
         if(user.isEmpty())
         {
@@ -34,13 +38,10 @@ public class ResetPasswordModel {
         ResultSet resultSet=null;
         String query = "select * from employee where username = ?";
         try {
-
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user);
-
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                System.out.println("got username");
                 this.session = new UserSession(resultSet.getString("id"), resultSet.getString("age"), resultSet.getString("name"), resultSet.getString("surname"), resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("role"), resultSet.getString("secret_question"), resultSet.getString("secret_answer"), resultSet.getBoolean("isAdmin"));
                 u = true;
             }
@@ -58,17 +59,16 @@ public class ResetPasswordModel {
         return u;
     }
 
+    /*
+     * Checks to see if answer input is correct then generates a new password for the User.
+     */
     public boolean resetPassword(String username, String answer) throws SQLException {
-        System.out.println(username);
-        System.out.println(UserSession.getSecretAnswer());
         boolean reset = false;
         newPassword = getNewPassword();
-        System.out.println(newPassword);
         if(answer.equals(UserSession.getSecretAnswer()))
         {
             PreparedStatement preparedStatement = null;
             String query = "update employee set password = ? where username = ?";
-
             try{
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, newPassword);
@@ -81,23 +81,21 @@ public class ResetPasswordModel {
                 preparedStatement.close();
             }
         }
-
         return reset;
     }
 
-    // Source: https://www.programiz.com/java-programming/examples/generate-random-string
+    /*
+     * Generates a new Password for the user
+     * Source: https://www.programiz.com/java-programming/examples/generate-random-string
+     */
     public String getNewPassword()
     {
-        String CHARS = "abcdefghijklmnopqrstuvwxyz1234567890";
         Random rand = new Random();
         StringBuilder randString = new StringBuilder();
-
         for(int i = 0; i < RAND_PASS_SIZE; i++)
         {
             int idx = rand.nextInt(CHARS.length());
-
             char c = CHARS.charAt(idx);
-
             randString.append(c);
         }
         String randPassword = randString.toString();

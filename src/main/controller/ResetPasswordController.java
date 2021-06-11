@@ -22,6 +22,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for resetting the password of a user. Requires the username and secret answer for account in question.
+ */
 public class ResetPasswordController implements Initializable {
     ResetPasswordModel resetPasswordModel = new ResetPasswordModel();
 

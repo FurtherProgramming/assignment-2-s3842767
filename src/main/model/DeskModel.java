@@ -13,6 +13,12 @@ public class DeskModel {
     private String empID;
     private Button deskButton;
 
+    /*
+     * Colours of the desk representing their state
+     * Red - Occupied
+     * Green - Free
+     * Orange - Covid Locked
+     */
     private final String red = "-fx-background-color: #ff0000;";
     private final String green = "-fx-background-color: #00ff22;";
     private final String orange = "-fx-background-color: #ff9d00;";
@@ -33,20 +39,9 @@ public class DeskModel {
 
     public void setColour(String colour)
     {
-        if(colour == "green")
-        {
-            deskButton.setStyle(green);
-        }
-        if(colour == "red")
-        {
-            deskButton.setStyle(red);
-        }
-        if(colour == "orange")
-        {
-            deskButton.setStyle(orange);
-        }
-
-
+        if(colour == "green") { deskButton.setStyle(green); }
+        if(colour == "red") { deskButton.setStyle(red); }
+        if(colour == "orange") { deskButton.setStyle(orange); }
     }
 
     public boolean getOccupied()
@@ -64,13 +59,11 @@ public class DeskModel {
         return empID;
     }
 
-    public void setButtonText(String text)
-    {
+    public void setButtonText(String text) {
         deskButton.setText(text);
     }
 
-    public Button getButton()
-    {
+    public Button getButton() {
         return deskButton;
     }
 

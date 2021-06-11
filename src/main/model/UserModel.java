@@ -1,5 +1,8 @@
 package main.model;
 
+/*
+ * UserModel creates objects for each user within the database for use in User management.
+ */
 public class UserModel {
 
     private String id;

@@ -21,10 +21,12 @@ public class InitializeApplication {
 
     }
 
+    /*
+     * Initializes the desks by implementing desk info from desk_list into deskList
+     */
     public ArrayList initializeDesks(ArrayList<Button> deskButtonList) throws Exception
     {
         int deskButtonIndex = 0;
-
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
 
@@ -55,6 +57,4 @@ public class InitializeApplication {
         }
         return deskList;
     }
-
-
 }

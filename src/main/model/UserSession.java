@@ -8,10 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/*
+ * UserSession temporarily stores the information of a logged in user or when a user wishes to reset their password for
+ * use with the functionalities of the program such as desk booking and management. When user logs out all information
+ * within UserSession is cleared.
+ */
 public class UserSession
 {
-    public ResultSet session;
-
     private static String id;
     private static String age, name, surname, username, password, role, secretQuestion, secretAnswer;
     private static boolean isAdmin;

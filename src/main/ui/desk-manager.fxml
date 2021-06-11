@@ -7,49 +7,106 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="635.0" prefWidth="892.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.DeskBookingController">
+<AnchorPane prefHeight="635.0" prefWidth="892.0" style="-fx-background-color: #fff4de;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.DeskBookingController">
    <children>
-      <Pane layoutX="33.0" layoutY="29.0" prefHeight="433.0" prefWidth="819.0" style="-fx-background-color: #e8e8e8;">
+      <Pane layoutX="33.0" layoutY="29.0" prefHeight="433.0" prefWidth="819.0" style="-fx-background-color: #ffcc99;">
          <children>
-            <Button fx:id="desk1" layoutX="33.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk1Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk2" layoutX="33.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk2Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk3" layoutX="33.0" layoutY="246.0" mnemonicParsing="false" onAction="#desk3Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk11" layoutX="747.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk11Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk10" layoutX="747.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk10Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk9" layoutX="747.0" layoutY="246.0" mnemonicParsing="false" onAction="#desk9Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk4" layoutX="64.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk4Clicked" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button fx:id="desk5" layoutX="196.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk5Clicked" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button fx:id="desk6" layoutX="334.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk6Clicked" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button fx:id="desk7" layoutX="492.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk7Clicked" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button fx:id="desk8" layoutX="637.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk8Clicked" prefHeight="33.0" prefWidth="109.0" text="b" />
-            <Button fx:id="desk12" layoutX="348.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk12Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk15" layoutX="421.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk15Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk13" layoutX="348.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk13Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
-            <Button fx:id="desk14" layoutX="421.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk14Clicked" prefHeight="81.0" prefWidth="41.0" text="b" />
+            <Button fx:id="desk1" layoutX="33.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk1Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk2" layoutX="33.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk2Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk3" layoutX="33.0" layoutY="246.0" mnemonicParsing="false" onAction="#desk3Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk11" layoutX="747.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk11Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk10" layoutX="747.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk10Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk9" layoutX="747.0" layoutY="246.0" mnemonicParsing="false" onAction="#desk9Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk4" layoutX="64.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk4Clicked" prefHeight="33.0" prefWidth="109.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk5" layoutX="196.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk5Clicked" prefHeight="33.0" prefWidth="109.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk6" layoutX="334.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk6Clicked" prefHeight="33.0" prefWidth="109.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk7" layoutX="492.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk7Clicked" prefHeight="33.0" prefWidth="109.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk8" layoutX="637.0" layoutY="373.0" mnemonicParsing="false" onAction="#desk8Clicked" prefHeight="33.0" prefWidth="109.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk12" layoutX="348.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk12Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk15" layoutX="421.0" layoutY="27.0" mnemonicParsing="false" onAction="#desk15Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk13" layoutX="348.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk13Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
+            <Button fx:id="desk14" layoutX="421.0" layoutY="136.0" mnemonicParsing="false" onAction="#desk14Clicked" prefHeight="81.0" prefWidth="41.0" text="b">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font></Button>
          </children>
       </Pane>
       <Label layoutX="33.0" layoutY="477.0" text="Selected:">
          <font>
-            <Font size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font>
       </Label>
       <Label fx:id="selectedButton" layoutX="101.0" layoutY="477.0" text="Table" textFill="#3700ff">
          <font>
-            <Font size="15.0" />
+            <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
       <Label fx:id="status" layoutX="320.0" layoutY="477.0" text="Status">
          <font>
-            <Font size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <Button layoutX="208.0" layoutY="537.0" mnemonicParsing="false" onAction="#lockDownTables" prefHeight="59.0" prefWidth="153.0" text="COVID Lockdown" />
-      <Button layoutX="33.0" layoutY="537.0" mnemonicParsing="false" onAction="#rejectBooking" prefHeight="59.0" prefWidth="153.0" text="Reject Booking" />
-      <Button layoutX="743.0" layoutY="556.0" mnemonicParsing="false" onAction="#backToLanding" prefHeight="40.0" prefWidth="109.0" text="Close" />
-      <Button layoutX="528.0" layoutY="567.0" mnemonicParsing="false" onAction="#exportDataToCsv" text="Export" />
+      <Button layoutX="208.0" layoutY="537.0" mnemonicParsing="false" onAction="#lockDownTables" prefHeight="59.0" prefWidth="153.0" style="-fx-background-color: #e67300;" text="COVID Lockdown" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="33.0" layoutY="537.0" mnemonicParsing="false" onAction="#rejectBooking" prefHeight="59.0" prefWidth="153.0" style="-fx-background-color: #ff7474;" text="Reject Booking" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="743.0" layoutY="556.0" mnemonicParsing="false" onAction="#backToLanding" prefHeight="40.0" prefWidth="109.0" style="-fx-background-color: #5ebcff;" text="Close" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button layoutX="528.0" layoutY="567.0" mnemonicParsing="false" onAction="#exportDataToCsv" style="-fx-background-color: #009933;" text="Export" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
       <Label layoutX="490.0" layoutY="509.0" text="Export Data to CSV">
          <font>
-            <Font size="15.0" />
+            <Font name="Arial" size="15.0" />
          </font>
       </Label>
       <TextField fx:id="exportTextField" layoutX="404.0" layoutY="537.0" prefHeight="25.0" prefWidth="298.0" promptText="Enter file location (Default is 'D\\desk_data.csv')" />

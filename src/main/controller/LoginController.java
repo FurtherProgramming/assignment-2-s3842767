@@ -44,27 +44,10 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent event) throws Exception{
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-                isConnected.setText("Logged in successfully");
-
                 if(loginModel.getSession().isAdmin())
-                {
-                    System.out.println("Is Admin");
-                    Parent root = FXMLLoader.load(getClass().getResource("/main/ui/admin-landing.fxml"));
-                    Stage stage = Main.getPrimaryStage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                }
+                    nextWindow("/main/ui/admin-landing.fxml");
                 else
-                {
-                    System.out.println("Is not Admin");
-                    Parent root = FXMLLoader.load(getClass().getResource("/main/ui/employee-landing.fxml"));
-                    Stage stage = Main.getPrimaryStage();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                }
-
+                    nextWindow("/main/ui/employee-landing.fxml");
             }else{
                 isConnected.setText("username and password is incorrect");
             }
@@ -86,15 +69,7 @@ public class LoginController implements Initializable {
         Stage stage = Main.getPrimaryStage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        System.out.println("Back to Home...");
         stage.show();
     }
-
-
-
-
     //11.2.3 big sur
-
-
-
 }

@@ -20,22 +20,21 @@ public class EmployeeManagerModel {
         connection = SQLConnection.connect();
         if (connection == null)
             System.exit(1);
-
     }
 
+    /*
+     * Initializes the users for the employee manager controller
+     */
     public ObservableList<UserModel> initializeUsers() throws SQLException {
         ObservableList<UserModel> userList = FXCollections.observableArrayList();
-
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
 
         String query = "select * from Employee";
-
         try
         {
             preparedStatement = connection.prepareStatement(query);
             result = preparedStatement.executeQuery();
-
             while(result.next())
             {
                 userList.add(new UserModel(result.getString("id"), result.getString("age"), result.getString("name"), result.getString("surname"), result.getString("username"), result.getString("password"), result.getString("role"), result.getString("secret_question"), result.getString("secret_answer"), result.getBoolean("isAdmin")));
@@ -52,6 +51,9 @@ public class EmployeeManagerModel {
         return userList;
     }
 
+    /*
+     * Saves changes made in the Employee Manager Controller to the database
+     */
     public boolean saveChangesToTable(ObservableList<UserModel> userList) throws SQLException
     {
         boolean update = false;
@@ -65,7 +67,6 @@ public class EmployeeManagerModel {
         {
             preparedStatement = connection.prepareStatement(getQuery);
             result = preparedStatement.executeQuery();
-
             preparedStatement = connection.prepareStatement(updateQuery);
             for(int i = 0; i < userList.size(); i++)
             {
@@ -81,7 +82,6 @@ public class EmployeeManagerModel {
                 preparedStatement.setString(10, userList.get(i).getId());
                 preparedStatement.executeUpdate();
             }
-
             update = true;
         }
         catch (Exception e)
@@ -95,13 +95,14 @@ public class EmployeeManagerModel {
         return update;
     }
 
+    /*
+     * Deletes an employee from the employee table by their id
+     */
     public boolean deleteItemFromTable(String id)
     {
         boolean delete = false;
         PreparedStatement preparedStatement = null;
-
         String query = "delete from Employee where id = ?";
-
         try
         {
             preparedStatement = connection.prepareStatement(query);
@@ -115,6 +116,9 @@ public class EmployeeManagerModel {
         return delete;
     }
 
+    /*
+     * Export employee details to CSV
+     */
     public boolean exportEmployeeListToCSV(String exportLocation, ObservableList<UserModel> userList) throws IOException {
         Boolean wrote = false;
         Writer writer = null;
@@ -122,14 +126,9 @@ public class EmployeeManagerModel {
         {
             File file = new File(exportLocation);
             if(file.createNewFile())
-            {
                 System.out.println("Successfully created file");
-            }
             else
-            {
                 System.out.println("Cant create file, possible already exists");
-            }
-
             writer = new BufferedWriter(new FileWriter(file));
             for (int i = 0; i < userList.size(); i++)
             {

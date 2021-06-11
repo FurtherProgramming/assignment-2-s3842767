@@ -18,6 +18,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/*
+ * The controller of the desk booking feature. Users can book desks here while admins can lockdown desks, reject bookings
+ * or export data as csv.
+ */
 public class DeskBookingController implements Initializable {
 
     InitializeApplication initApp = new InitializeApplication();
@@ -69,7 +73,7 @@ public class DeskBookingController implements Initializable {
     @FXML
     TextField exportTextField;
 
-    final String exportLocation = "D:\\desk_data.csv";
+    final String EXPORT_LOCATION = "D:\\desk_data.csv";
     boolean isLocked = false;
 
 
@@ -102,6 +106,27 @@ public class DeskBookingController implements Initializable {
             e.printStackTrace();
         }
 
+        setButtonGUI();
+    }
+
+    // updates the GUI by reinitializing the desk buttons after the user commits an action
+    public void updateGUI()
+    {
+        selectedButton.setText("None");
+
+        try {
+            deskList = initApp.initializeDesks(deskButtonList);
+        } catch (Exception e) {
+            System.out.println("Error in initialize");
+            e.printStackTrace();
+        }
+
+        setButtonGUI();
+    }
+
+    // Sets the desk button colours representing their current state
+    public void setButtonGUI()
+    {
         // Makes the buttons colourful
         for(int i = 0; i < deskList.size(); i++)
         {
@@ -138,53 +163,7 @@ public class DeskBookingController implements Initializable {
         }
     }
 
-    // updates the GUI by reinitializing the desk buttons after the user commits an action
-    public void updateGUI()
-    {
-        selectedButton.setText("None");
-
-        try {
-            deskList = initApp.initializeDesks(deskButtonList);
-        } catch (Exception e) {
-            System.out.println("Error in initialize");
-            e.printStackTrace();
-        }
-
-        for(int i = 0; i < deskList.size(); i++)
-        {
-            // Set Colour of Buttons
-            if(!deskList.get(i).getOccupied())
-                deskList.get(i).setColour(FREE);
-            if(deskList.get(i).getOccupied())
-                deskList.get(i).setColour(OCCUPIED);
-            if(deskList.get(i).getLocked())
-                deskList.get(i).setColour(LOCKED);
-
-
-            // Checks to see if desk lockdown is in place
-            if(deskList.get(i).getLocked())
-                isLocked = true;
-
-            deskList.get(i).setButtonText(deskList.get(i).getId());
-
-            desk1 = deskList.get(0).getButton();
-            desk2 = deskList.get(1).getButton();
-            desk3 = deskList.get(2).getButton();
-            desk4 = deskList.get(3).getButton();
-            desk5 = deskList.get(4).getButton();
-            desk6 = deskList.get(5).getButton();
-            desk7 = deskList.get(6).getButton();
-            desk8 = deskList.get(7).getButton();
-            desk9 = deskList.get(8).getButton();
-            desk10 = deskList.get(9).getButton();
-            desk11 = deskList.get(10).getButton();
-            desk12 = deskList.get(11).getButton();
-            desk13 = deskList.get(12).getButton();
-            desk14 = deskList.get(13).getButton();
-            desk15 = deskList.get(14).getButton();
-        }
-    }
-
+    // Employee feature; Button to book a selected desk
     public boolean bookButton(ActionEvent event) throws SQLException {
         if(selectedButton.getText() == "None")
         {
@@ -200,11 +179,11 @@ public class DeskBookingController implements Initializable {
         }
         else
         {
-            status.setText("An error has occurred");
+            status.setText(deskBookModel.statusMessage);
             return false;
         }
     }
-
+    // Admin feature to lockdown every second desk to create social distancing
     public void lockDownTables(ActionEvent event) throws SQLException {
         if(deskBookModel.covidLockTables(deskList, isLocked))
         {
@@ -217,12 +196,13 @@ public class DeskBookingController implements Initializable {
         updateGUI();
     }
 
+    // Admin feature to export information related to desk booking as csv
     public void exportDataToCsv(ActionEvent event) throws Exception
     {
         String location;
         if(exportTextField.getText().isEmpty())
         {
-            location = exportLocation;
+            location = EXPORT_LOCATION;
         }
         else
         {
@@ -239,6 +219,7 @@ public class DeskBookingController implements Initializable {
         }
     }
 
+    // Employee feature to undo a booking they have made
     public boolean remBook(ActionEvent event) throws SQLException
     {
 
@@ -255,6 +236,7 @@ public class DeskBookingController implements Initializable {
         }
     }
 
+    // Admin feature to reject a booking made by an employee
     public void rejectBooking(ActionEvent event) throws SQLException {
         if(selectedButton.getText() == "None")
         {
@@ -278,7 +260,7 @@ public class DeskBookingController implements Initializable {
 
 
 
-    // The following are just action methods for the desk buttons
+    // The following are just action methods for the desk buttons which set the selected desk to its corresponding button
 
     public void desk1Clicked(ActionEvent event)
     {
