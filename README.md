@@ -34,6 +34,12 @@ The model has the following classes:
 - `UserModel` - Stores information about a user
 - `UserSession` - Temporarily stores information about a logged-in user.
 
+Password for Admin:
+
+Username - admin
+
+Password - password
+
 Design
 -----------------------------
 Some design choices in this assignment are:
