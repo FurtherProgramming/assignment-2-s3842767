@@ -178,7 +178,6 @@ public class EmployeeManagerController implements Initializable {
                 user.setSecretAnswer(event.getNewValue());
             }
         });
-
         userTable.setItems(userList);
     }
 
@@ -223,22 +222,14 @@ public class EmployeeManagerController implements Initializable {
     {
         String location;
         if(exportTextField.getText().isEmpty())
-        {
             location = exportLocation;
-        }
         else
-        {
             location = exportTextField.getText();
-        }
 
         if(empManModel.exportEmployeeListToCSV(location, userList))
-        {
             statusLabel.setText("Export Successful");
-        }
         else
-        {
             statusLabel.setText("Export Unsuccessful");
-        }
     }
 
     public void backToLanding(ActionEvent event) throws Exception
